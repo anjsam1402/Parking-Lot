@@ -4,7 +4,7 @@ import java.util.*;
 public class ParkingLot {
 
     private SlotFetcher strategy = null;
-    ArrayList< ArrayList<Slot> > parkingLot;
+    Vector< Vector<Slot> > parkingLot;
     private FactoryClass factoryClass = null;
     private int size = -1;
 
@@ -13,20 +13,18 @@ public class ParkingLot {
         this.size = size;
         factoryClass = new FactoryClass();
         strategy = new AvailableSlotFetcherService();
-        parkingLot = new ArrayList<>();
+        parkingLot = new Vector<Vector<Slot>>(this.size + 1);
         initParkingLot();
     }
 
     public void initParkingLot() {
         System.out.println("Initializing Parking Lot");
-        ArrayList<Slot> currentList = new ArrayList<>();
         for (int i = 0; i < this.size; ++i) {
+            parkingLot.add(i, new Vector<Slot>(this.size + 1));
             for (int j = 0; j < this.size; ++j) {
                 System.out.println("i = " + i + " j = " + j);
-                currentList.add(factoryClass.getSlotObject());
+                parkingLot.get(i).add(j, factoryClass.getSlotObject());
             }
-            parkingLot.add(currentList);
-            currentList.clear();
         }
     }
 
@@ -75,7 +73,7 @@ public class ParkingLot {
         return this.size;
     }
 
-    public ArrayList< ArrayList<Slot> > getParkingLot() {
+    public Vector<Vector<Slot>> getParkingLot() {
         return parkingLot;
     }
 }

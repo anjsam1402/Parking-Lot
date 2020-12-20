@@ -2,6 +2,7 @@ package com.company.parkingLot;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class AvailableSlotFetcherService implements SlotFetcher {
     @Override
@@ -9,9 +10,9 @@ public class AvailableSlotFetcherService implements SlotFetcher {
         Slot needed = null;
         System.out.println("Inside Strategy");
         for (int i = 0; i < parkingLot.getSize(); ++i) {
-            ArrayList<Slot> current = parkingLot.getParkingLot().get(i);
+            Vector<Slot> current = parkingLot.getParkingLot().get(i);
             if(current == null) break;
-            for (int j = 0; j < current.size(); ++j) {
+            for (int j = 0; j < parkingLot.getSize(); ++j) {
                 if(current == null) break;
                 Slot slotCurrentCapacity = current.get(j);
                 if(slotCurrentCapacity != null &&
