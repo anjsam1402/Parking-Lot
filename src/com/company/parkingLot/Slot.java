@@ -122,7 +122,6 @@ public class Slot {
                 ", slotId=" + slotId +
                 ", distanceList=" + distanceList +
                 ", reserved=" + reserved +
-                ", vehicleList=" + vehicleList +
                 ", INVALID=" + INVALID +
                 '}';
     }
