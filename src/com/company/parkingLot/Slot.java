@@ -43,13 +43,8 @@ public class Slot {
         return true;
     }
 
-    public ArrayList<Vehicle> getVehicleList() {
-        return vehicleList;
-    }
 
-    public int getslotId() {
-        return slotId;
-    }
+
 
     public boolean getStatus() {
         return this.reserved;
@@ -79,7 +74,6 @@ public class Slot {
         this.currentCapacity += currentCapacity;
         return true;
     }
-
 
     public boolean changeStatus(boolean decision) {
         if(this.reserved == decision) {
