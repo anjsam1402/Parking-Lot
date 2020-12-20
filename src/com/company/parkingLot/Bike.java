@@ -20,7 +20,10 @@ public class Bike implements Vehicle {
 
     Bike() {
         this.vehicleId = generator.getId();
+        this.capacity = 1;
+        this.vehicleType = "BIKE";
     }
+
     Bike(int capacity, String color, String registrationNumber) {
         this.capacity = capacity;
         this.color = color;

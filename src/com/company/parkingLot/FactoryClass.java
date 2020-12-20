@@ -1,16 +1,16 @@
 package com.company.parkingLot;
 
 public class FactoryClass {
-    public Car getCarObject() {
-        return new Car();
+    public Bike getBikeObject(String color, String registrationNumber) {
+        return new Bike(1, color, registrationNumber);
     }
 
-    public Bike getBikeObject() {
-        return new Bike();
+    public Car getCarObject(String color, String registrationNumber) {
+        return new Car(2, color, registrationNumber);
     }
 
-    public Truck getTruckObject() {
-        return new Truck();
+    public Truck getTruckObject(String color, String registrationNumber) {
+        return new Truck(4, color, registrationNumber);
     }
 
     public Ticket getTicketObject() {

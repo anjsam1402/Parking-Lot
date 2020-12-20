@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Slot {
+    public static final String LOG_TAG = "SLOT";
     public static int CurrentId = 0;
     private int currentCapacity = 0;
     private int Capacity = -1;
@@ -58,6 +59,10 @@ public class Slot {
         return this.currentCapacity;
     }
 
+    public int getCapacity() {
+        return this.Capacity;
+    }
+
     public int getSlotId() {
         return this.slotId;
     }
@@ -81,12 +86,13 @@ public class Slot {
 
     //returns true If successfully reserved the slot, otherwise returns false
     public boolean reserveSlot(Vehicle vehicle) {
-        if(this.reserved == true) {
+        if(this.currentCapacity + vehicle.getCapacity() > this.Capacity) {
             return false;
         }
+        System.out.println(LOG_TAG + " Reserving the slot " + this.slotId + " for Vehicle id_: " + vehicle.getVehicleId());
         setStatus(true);
         this.vehicleList.add(vehicle);//added the vehicle to the list
-        boolean isPossible = this.updateCapacity(vehicle.getCapacity());//updated the current capacity of the slot which is remaining
+        boolean isPossible = updateCapacity(vehicle.getCapacity());//updated the current capacity of the slot which is remaining
         return isPossible;
     }
 

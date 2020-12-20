@@ -19,7 +19,9 @@ public class Car implements Vehicle {
     }
 
     Car() {
+        this.capacity = 2;
         this.vehicleId = generator.getId();
+        this.vehicleType = "CAR";
     }
 
     Car(int capacity, String color, String registrationNumber) {

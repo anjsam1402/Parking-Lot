@@ -9,7 +9,9 @@ public class Truck implements Vehicle {
 
 
     Truck() {
+        this.capacity = 4;
         this.vehicleId = generator.getId();
+        this.vehicleType = "TRUCK";
     }
 
     Truck(int capacity, String color, String registrationNumber) {

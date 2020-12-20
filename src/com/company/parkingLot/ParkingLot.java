@@ -12,7 +12,7 @@ public class ParkingLot {
         System.out.println("Parking Lot created of Size: " + size + " x " + size);
         this.size = size;
         factoryClass = new FactoryClass();
-        strategy = new AvailableSlotFetcherService();
+        strategy = new AvailableSlotFetcherService();//This seems to be the default strategy
         parkingLot = new Vector<Vector<Slot>>(this.size + 1);
         initParkingLot();
     }
@@ -22,7 +22,6 @@ public class ParkingLot {
         for (int i = 0; i < this.size; ++i) {
             parkingLot.add(i, new Vector<Slot>(this.size + 1));
             for (int j = 0; j < this.size; ++j) {
-                System.out.println("i = " + i + " j = " + j);
                 parkingLot.get(i).add(j, factoryClass.getSlotObject());
             }
         }
@@ -31,11 +30,11 @@ public class ParkingLot {
     public Ticket parkVehicle(int entryGate, String vehicleType, String registrationNumber, String color) {
         Vehicle vehicle = null;
         if(vehicleType.equals("CAR")) {
-            vehicle = factoryClass.getCarObject();
+            vehicle = factoryClass.getCarObject(color, registrationNumber);
         } else if(vehicleType.equals("BIKE")) {
-            vehicle = factoryClass.getBikeObject();
+            vehicle = factoryClass.getBikeObject(color, registrationNumber);
         } else if(vehicleType.equals("TRUCK")) {
-            vehicle = factoryClass.getTruckObject();
+            vehicle = factoryClass.getTruckObject(color, registrationNumber);
         } else {
             System.out.println("Current Vehicle type is not supported");
         }
@@ -45,7 +44,7 @@ public class ParkingLot {
             System.out.println("No slot is availble");
             return null;
         }
-        allotedSlot.reserveSlot(vehicle); // Slot is alloted to the
+        allotedSlot.reserveSlot(vehicle); // Slot is alloted to the vehicle
         Ticket ticket = factoryClass.getTicketObject();
         ticket.setVehicle(vehicle);
         ticket.setSlot(allotedSlot);
@@ -66,7 +65,7 @@ public class ParkingLot {
     }
 
     private Slot getFreeSlot(int entryGateNumber, Vehicle vehicle) {
-        return strategy.getSlot(entryGateNumber, vehicle,this);
+        return strategy.getSlot(entryGateNumber, vehicle, this);
     }
 
     public int getSize() {

@@ -1,23 +1,18 @@
 package com.company.parkingLot;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Vector;
 
 public class AvailableSlotFetcherService implements SlotFetcher {
+    public static final String LOG_TAG = "AvailableSlotFetcherService";
     @Override
     public Slot getSlot(int EntryGate, Vehicle vehicle, ParkingLot parkingLot) {
         Slot needed = null;
-        System.out.println("Inside Strategy");
-        for (int i = 0; i < parkingLot.getSize(); ++i) {
-            Vector<Slot> current = parkingLot.getParkingLot().get(i);
-            if(current == null) break;
-            for (int j = 0; j < parkingLot.getSize(); ++j) {
-                if(current == null) break;
-                Slot slotCurrentCapacity = current.get(j);
-                if(slotCurrentCapacity != null &&
-                        slotCurrentCapacity.getCurrentCapacity() >= vehicle.getCapacity()) {
-                    needed = slotCurrentCapacity;
+        System.out.println(LOG_TAG + " getSlot()");
+        Vector<Vector<Slot>> board = parkingLot.getParkingLot();
+        for (int i = 0; i < board.size(); ++i) {
+            for (int j = 0; j < board.get(i).size(); ++j) {
+                if(board.get(i).get(j).getCurrentCapacity() + vehicle.getCapacity() <= board.get(i).get(j).getCapacity()) {
+                    needed = board.get(i).get(j);
                     break;
                 }
             }
