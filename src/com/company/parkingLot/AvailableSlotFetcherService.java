@@ -19,7 +19,7 @@ public class AvailableSlotFetcherService implements SlotFetcher {
             if(needed != null) break;
         }
         if(needed == null) {
-            System.out.println("No Slot is available righ now, Please come after some time.");
+            System.out.println("No Slot is available right now, Please come after some time.");
         }
         return needed;
     }
